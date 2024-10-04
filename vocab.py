@@ -1,3 +1,4 @@
+import random
 vocab_a2 = {
     "able": "สามารถ",
     "accept": "ยอมรับ",
@@ -1000,3 +1001,26 @@ vocab_b2 = {
     "wholly": "ทั้งหมด",
     "witty": "ฉลาด"
 }
+
+length_a2 = len(vocab_a2)
+length_b1 = len(vocab_b1)
+length_b2 = len(vocab_b2)
+def vocab_a2_random():
+    a2 = random.randint(1,length_a2)
+    en_word = list(vocab_a2.keys())[a2]
+    th_word = list(vocab_a2.values())[a2]
+    return en_word, th_word
+def vocab_b1_random():
+    b1 = random.randint(1,length_b1)
+    en_word = list(vocab_b1.keys())[b1]
+    th_word = list(vocab_b1.values())[b1]
+    return en_word, th_word
+def vocab_b2_random():
+    b2 = random.randint(1,length_b2)
+    en_word = list(vocab_b2.keys())[b2]
+    th_word = list(vocab_b2.values())[b2]
+    return en_word, th_word
+
+print(vocab_a2_random())
+print(vocab_b1_random())
+print(vocab_b2_random())
