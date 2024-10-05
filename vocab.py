@@ -1002,9 +1002,7 @@ vocab_b2 = {
     "witty": "ฉลาด"
 }
 
-length_a2 = len(vocab_a2)
-length_b1 = len(vocab_b1)
-length_b2 = len(vocab_b2)
+length_a2, length_b1, length_b2 = len(vocab_a2), len(vocab_b1), len(vocab_b2)
 def vocab_a2_random():
     a2 = random.randint(1,length_a2)
     en_word = list(vocab_a2.keys())[a2]
