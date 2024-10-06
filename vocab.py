@@ -18,7 +18,7 @@ vocab_a2 = {
     "angry": "feeling strong annoyance or displeasure",
     "animal": "a living organism that is not a human or plant",
     "answer": "a reply or response to a question",
-    "appeal": "the quality of being attractive or interesting",
+    "appeal": "a request to the public for money, information, or help",
     "area": "a particular region or space",
     "army": "a large organized group of soldiers",
     "arrive": "to reach a destination",
