@@ -3,6 +3,7 @@ import pygame
 
 def how_to_page():
     """return screen for selecting game mode"""
+    pygame.display.set_caption("How to play")
     screen = pygame.display.set_mode((1280, 720))
     running = True
 

@@ -19,19 +19,21 @@ def main_page():
     down = True
     time = 0
 
+    pygame.display.set_caption("Bordice")
+
     screen = pygame.display.set_mode((1280, 720))
     clock = pygame.time.Clock()
 
     # setup images
     background = pygame.image.load("images/background_test.jpg")
-    logo = pygame.image.load("images/logo_test.png")
+    logo = pygame.image.load("images/logo.png")
     superman  = pygame.image.load("images/superman.png")
     cloud1 = pygame.image.load("images/cloud1.png")
     cloud2 = pygame.image.load("images/cloud2.png")
     cloud3 = pygame.image.load("images/cloud3.png")
     cloud4 = pygame.image.load("images/cloud4.png")
     # images tranfrom
-    logo = pygame.transform.scale(logo, (500, 300))
+    logo = pygame.transform.scale(logo, (370, 280))
     background = pygame.transform.scale(background, (1280, 720))
 
     # setup color
@@ -55,7 +57,7 @@ def main_page():
         screen.blit(cloud3, (x_cloud1 - 1400, 150))
         screen.blit(cloud4, (x_cloud2 - 3000 , -100))
 
-        screen.blit(logo, (40, 5))
+        screen.blit(logo, (75, 10))
         screen.blit(superman, (750, y))
 
         # cloud transition
@@ -80,10 +82,10 @@ def main_page():
 
         # button on screen
         #      txt /font_size /x   /y    /w   /h  /init_color /action_color /action
-        button("START", 70, 150, 300, 250, 80, brown, bright_brown, select_player)
-        button("SETTING", 70, 125, 400, 300, 80, brown, bright_brown, setting_page)
-        button("HOW TO PLAY", 70, 70, 500, 450, 80, brown, bright_brown, how_to_page)
-        button("QUIT", 70, 150, 600, 250, 80, brown, bright_brown, sys.exit)
+        button("START", 50, 150, 300, 250, 80, brown, bright_brown, select_player)
+        button("SETTING", 50, 125, 400, 300, 80, brown, bright_brown, setting_page)
+        button("HOW TO PLAY", 50, 50, 500, 450, 80, brown, bright_brown, how_to_page)
+        button("QUIT", 50, 150, 600, 250, 80, brown, bright_brown, sys.exit)
 
         pygame.display.update()
         clock.tick(FPS)

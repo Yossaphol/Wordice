@@ -10,7 +10,6 @@ vocab_a2 = {
     "alone": "without anyone else",
     "angry": "feeling strong annoyance or displeasure",
     "apple": "a round fruit with red or green skin",
-    "admit": "to confess or acknowledge",
     "agree": "to have the same opinion",
     "after": "later in time than something else",
     "allow": "to permit or let something happen",
