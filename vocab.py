@@ -777,8 +777,8 @@ vocab = {
     "witty": "clever and amusing"
 }
 
-length = len(vocab)
 def vocab_random():
+    length = len(vocab)
     ind = random.randint(1,length-1)
     en_word = list(vocab.keys())[ind]
     description = list(vocab.values())[ind]
