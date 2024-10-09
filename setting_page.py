@@ -11,8 +11,8 @@ def setting_page():
     running = True
 
     brown = 185, 156, 107
-    dark_brown = 73, 56, 41
-    bright_brown = 169, 161, 140
+    silver = 192,192,192
+    gainsboro = 220,220,220
 
     while running:
         for event in pygame.event.get():
@@ -30,7 +30,7 @@ def setting_page():
         pygame.draw.rect(screen, dark_brown, pygame.Rect(175, 300, 900, 100), border_radius=20)
         pygame.draw.rect(screen, dark_brown, pygame.Rect(175, 450, 900, 100), border_radius=20)
 
-        button("APPLY", 45, 540, 585, 200, 80, brown, bright_brown, main_page)
+        button("APPLY", 30, 540, 585, 150, 60, silver, gainsboro, main_page)
 
         pygame.display.update()
 

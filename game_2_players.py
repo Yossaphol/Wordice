@@ -6,6 +6,9 @@ def game_2_players():
     """return screen for selecting game mode"""
     pygame.display.set_caption("Bordice 1Vs1")
     screen = pygame.display.set_mode((1280, 720))
+    sound = pygame.mixer.Sound("sounds/sound.mp3")
+    sound.play()
+    
     running = True
 
     brown = 185, 156, 107

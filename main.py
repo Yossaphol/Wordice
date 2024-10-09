@@ -6,6 +6,7 @@ from button import *
 from select_player import *
 from setting_page import *
 from how_to_page import *
+from menu import button_menu
 
 pygame.init()
 
@@ -32,9 +33,16 @@ def main_page():
     cloud2 = pygame.image.load("images/cloud2.png")
     cloud3 = pygame.image.load("images/cloud3.png")
     cloud4 = pygame.image.load("images/cloud4.png")
+    start = pygame.image.load("images/play.gif")
+    start_hover = pygame.image.load("images/start_hover.png")
     # images tranfrom
     logo = pygame.transform.scale(logo, (370, 280))
     background = pygame.transform.scale(background, (1280, 720))
+    start = pygame.transform.scale(start, (200, 90))
+    start_hover = pygame.transform.scale(start_hover, (200, 90))
+
+    start_w = start.get_width()
+    start_h = start.get_height()
 
     # setup color
     brown = 185, 156, 107
@@ -59,7 +67,7 @@ def main_page():
 
         screen.blit(logo, (75, 10))
         screen.blit(superman, (750, y))
-
+        
         # cloud transition
         if time < 3500:
             time += 1
@@ -81,11 +89,11 @@ def main_page():
                 down = True
 
         # button on screen
-        #      txt /font_size /x   /y    /w   /h  /init_color /action_color /action
-        button("START", 50, 150, 300, 250, 80, brown, bright_brown, select_player)
-        button("SETTING", 50, 125, 400, 300, 80, brown, bright_brown, setting_page)
-        button("HOW TO PLAY", 50, 50, 500, 450, 80, brown, bright_brown, how_to_page)
-        button("QUIT", 50, 150, 600, 250, 80, brown, bright_brown, sys.exit)
+        button_menu(150, 280, start_w, start_h, start, start_hover, select_player)
+        button("SETTING", 50, 125, 370, 270, 70, brown, bright_brown, setting_page)
+        button("HOW TO PLAY", 50, 80, 460, 350, 70, brown, bright_brown, how_to_page)
+        button("QUIT", 50, 150, 550, 220, 70, brown, bright_brown, sys.exit)
+
 
         pygame.display.update()
         clock.tick(FPS)

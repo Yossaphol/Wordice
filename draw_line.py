@@ -50,7 +50,12 @@ while running:
     pygame.draw.line(screen, brown, (110, 306), (55, 272), 5)
     pygame.draw.line(screen, brown, (232, 248), (174, 214), 5)
     pygame.draw.line(screen, brown, (122, 243), (171, 274), 5)
-    pygame.draw.line(screen, brown, (231, 246), (273, 222), 5)
+    pygame.draw.line(screen, brown, (304, 231), (255, 260), 5)
+    pygame.draw.line(screen, brown, (309, 229), (362, 261), 5)
+    pygame.draw.line(screen, brown, (380, 195), (433, 227), 5)
+    pygame.draw.line(screen, brown, (453, 158), (506, 191), 5)
+    pygame.draw.line(screen, brown, (524, 122), (581, 157), 5)
+    pygame.draw.line(screen, brown, (597, 89), (648, 122), 5)
 
 
     pygame.display.update()

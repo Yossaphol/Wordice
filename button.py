@@ -14,12 +14,15 @@ def button(txt, font_size, x, y, w, h, init_color, action_color, action = None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
+    sound = pygame.mixer.Sound("sounds/click.MP3")
     if x+w > mouse[0] > x and y+h > mouse[1] > y:
         pygame.draw.rect(screen, "BLACK", (x + 3, y + 3,w,h), 0, 0, 30 ,30, 30, 30)
         pygame.draw.rect(screen, action_color, (x,y,w,h), 0, 0, 30 ,30, 30, 30)
 
         if click[0] == 1 and action != None:
+            sound.play()
             action()
+
 
     else:
         pygame.draw.rect(screen, "BLACK", (x + 3, y + 3,w,h), 0, 0, 30 ,30, 30, 30)
