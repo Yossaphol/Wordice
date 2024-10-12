@@ -4,7 +4,7 @@ screen = pygame.display.set_mode((1280, 720))
 running = True
 
 # map
-map_game = pygame.image.load("images/game_map.png")
+map_game = pygame.image.load("images/game_map_2.png")
 map_game = pygame.transform.scale(map_game, (1290, 730))
 # 900 420, 980 460
 clock = pygame.time.Clock()
