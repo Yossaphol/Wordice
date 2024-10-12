@@ -5,6 +5,7 @@ from game_2_players import game_2_players
 
 def select_player():
     """return screen for selecting game mode"""
+    from main import main_page
     pygame.display.set_caption("Select player")
     screen = pygame.display.set_mode((1280, 720))
     running = True
@@ -12,6 +13,8 @@ def select_player():
     brown = 185, 156, 107
     bright_brown = 169, 161, 140
     dark_brown = 73, 56, 41
+    silver = 192,192,192
+    gainsboro = 220,220,220
 
     font = pygame.font.Font("fonts/Pixelify_Sans/PixelifySans-Medium.ttf", 50)
 
@@ -34,6 +37,7 @@ def select_player():
         button("3 PLAYER", 45, 140, 300, 1000, 80, brown, bright_brown, )
         button("4 PLAYER", 45, 140, 400, 1000, 80, brown, bright_brown, )
 
+        button("BACK", 30, 30, 620, 150, 60, silver, gainsboro, main_page)
         screen.blit(text1, (380, 100))
 
         pygame.display.update()

@@ -1,5 +1,6 @@
 """selecting game mode"""
 import pygame
+from button import button
 
 def how_to_page():
     """return screen for selecting game mode"""
@@ -8,18 +9,19 @@ def how_to_page():
     running = True
 
     brown = 185, 156, 107
-    dark_brown = 73, 56, 41
+    silver = 192,192,192
+    gainsboro = 220,220,220
+
+    mouse = pygame.mouse.get_pressed()
+    scrolls = 0
 
     while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
 
         screen.fill(brown)
 
-        text = pygame.font.Font("fonts/Pixelify_Sans/PixelifySans-Medium.ttf", 30)
-        text_screen = text.render("This is screen for discribe How to play this game.", True, dark_brown)
-        screen.blit(text_screen, (300, 300))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
 
         pygame.display.update()
 
