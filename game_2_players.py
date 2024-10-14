@@ -1,6 +1,7 @@
 """selecting game mode"""
 import pygame
 from player_profile import profile
+import random
 
 def game_2_players():
     """return screen for selecting game mode"""
@@ -8,11 +9,12 @@ def game_2_players():
     screen = pygame.display.set_mode((1280, 720))
     sound = pygame.mixer.Sound("sounds/sound.mp3")
     sound.play()
-    
+
     running = True
 
+    bright_brown = 169, 161, 140
+    wheat = 245,222,179
     brown = 185, 156, 107
-    line_color = 95, 65, 22
 
     # cloud
     cloud1 = pygame.image.load("images/cloud1.png")
@@ -38,10 +40,18 @@ def game_2_players():
     x_cloud1 = 0
     x_cloud2 = 0
 
-    time = 0
+    times = 0
 
     clock = pygame.time.Clock()
     fps = 30
+
+    # dice rolling
+    dice_images = [pygame.image.load(f"images/dice/{num}.png") for num in range(1, 7)]
+    dice_rolling_images = [pygame.image.load(f"images/dice/{num}.png") for num in range(1, 7)]
+
+    is_rolling = False
+    rolling_img_cnt = 0
+    dice_num_image = dice_images[0]
 
     while running:
         for event in pygame.event.get():
@@ -60,12 +70,12 @@ def game_2_players():
         screen.blit(cloud4, (x_cloud2 - 3000 , 700))
 
 
-        if time < 3500:
-            time += 1
+        if times < 3500:
+            times += 1
             x_cloud1 += 1
             x_cloud2 += 2
         else:
-            time = 0
+            times = 0
             x_cloud1 = -1000
             x_cloud2 = -1000
 
@@ -74,8 +84,24 @@ def game_2_players():
         profile(130, 630, 110, 30, 70, brown, "PLAYER 1", player_1)
         profile(1150, 120, 110, 30, 70, brown, "PLAYER 2", player_2)
 
-        # draw a box for move
-        # pygame.draw.line(screen, line_color, (250,0), (250,500), 50)
+        # rolling
+        if is_rolling:
+            screen.blit(dice_rolling_images[rolling_img_cnt], (200, 200))
+            rolling_img_cnt += 1
+            if rolling_img_cnt >= len(dice_rolling_images):
+                rolling_img_cnt = 0
+                is_rolling = False
+                dice_num_image = dice_images[random.randint(0, 5)]
+        else:
+            screen.blit(dice_num_image, (200, 200))
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_SPACE] and not is_rolling:
+            is_rolling = True
+            rolling_img_cnt = 0
+
+        pygame.display.update()
+        pygame.time.delay(50)
 
         pygame.display.update()
         clock.tick(fps)
