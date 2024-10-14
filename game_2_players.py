@@ -23,7 +23,7 @@ def game_2_players():
     cloud4 = pygame.image.load("images/cloud4.png")
 
     # map
-    map_game = pygame.image.load("images/game_map.png")
+    map_game = pygame.image.load("images/game_map_2.png")
     map_game = pygame.transform.scale(map_game, (1290, 730))
 
     # background
