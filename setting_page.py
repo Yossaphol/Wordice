@@ -1,6 +1,7 @@
 """selecting game mode"""
 import pygame
 from button import *
+from menu import button_menu
 
 def setting_page():
     """return screen for selecting game mode"""
@@ -19,6 +20,16 @@ def setting_page():
     wheat = 245,222,179
     lemon = 255, 250, 205
     black = 0, 0, 0
+
+    back = pygame.image.load("images/back.png")
+    back_hover = pygame.image.load("images/back_hover.png")
+    back = pygame.transform.scale(back, (80, 80))
+    back_hover = pygame.transform.scale(back_hover, (80, 80))
+    next = pygame.image.load("images/next.png")
+    next_hover = pygame.image.load("images/next_hover.png")
+    next = pygame.transform.scale(next, (80, 80))
+    next_hover = pygame.transform.scale(next_hover, (80, 80))
+
 
     while running:
         for event in pygame.event.get():
@@ -53,7 +64,8 @@ def setting_page():
         screen.blit(sfx, (200, 330))
         screen.blit(music, (200, 480))
 
-        button("APPLY", 45, 540, 585, 200, 80, wheat, lemon, main_page)
+        button_menu(30, 620, 150, 60, back, back_hover, main_page)
+        button_menu(1170, 620, 150, 60, next, next_hover, main_page)
         pygame.display.update()
 
     pygame.quit()

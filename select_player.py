@@ -2,6 +2,7 @@
 import pygame
 from button import *
 from game_2_players import game_2_players
+from menu import button_menu
 
 def select_player():
     """return screen for selecting game mode"""
@@ -17,6 +18,11 @@ def select_player():
     gainsboro = 220,220,220
 
     font = pygame.font.Font("fonts/Pixelify_Sans/PixelifySans-Medium.ttf", 50)
+
+    back = pygame.image.load("images/back.png")
+    back_hover = pygame.image.load("images/back_hover.png")
+    back = pygame.transform.scale(back, (80, 80))
+    back_hover = pygame.transform.scale(back_hover, (80, 80))
 
     while running:
         for event in pygame.event.get():
@@ -37,7 +43,7 @@ def select_player():
         button("3 PLAYER", 45, 140, 300, 1000, 80, brown, bright_brown, )
         button("4 PLAYER", 45, 140, 400, 1000, 80, brown, bright_brown, )
 
-        button("BACK", 30, 30, 620, 150, 60, silver, gainsboro, main_page)
+        button_menu(30, 620, 150, 60, back, back_hover, main_page)
         screen.blit(text1, (380, 100))
 
         pygame.display.update()
