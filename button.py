@@ -11,6 +11,8 @@ def text_object(txt, font):
 
 def button(txt, font_size, x, y, w, h, init_color, action_color, action = None):
     """This is a button Function"""
+    pygame.init()
+
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
@@ -23,12 +25,11 @@ def button(txt, font_size, x, y, w, h, init_color, action_color, action = None):
             sound.play()
             action()
 
-
     else:
         pygame.draw.rect(screen, "BLACK", (x + 3, y + 3,w,h), 0, 0, 30 ,30, 30, 30)
         pygame.draw.rect(screen, init_color, (x,y,w,h), 0, 0, 30 ,30, 30, 30)
 
-    smallText = pygame.font.Font("fonts/Pixelify_Sans/PixelifySans-Bold.ttf", font_size)
+    smallText = pygame.font.Font("fonts/Pixelify.ttf", font_size)
     text_surface, text_rect = text_object(txt, smallText)
     text_rect.center = ((x + w/2), (y + h/2))
     screen.blit(text_surface, text_rect)
