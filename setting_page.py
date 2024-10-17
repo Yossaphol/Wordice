@@ -5,7 +5,7 @@ from menu import button_menu
 
 def setting_page():
     """return screen for selecting game mode"""
-    
+
     from main import main_page
     pygame.display.set_caption("Setting")
     screen = pygame.display.set_mode((1280, 720))
@@ -63,7 +63,7 @@ def setting_page():
                 if dragging_music:
                     music_percent = calculate_percentage(music_slider.x)
                     print("Music Volume:", music_percent, "%")
-                
+
                 # reset dragging flags
                 dragging_master = dragging_sfx = dragging_music = False
 
@@ -81,18 +81,18 @@ def setting_page():
         font = pygame.font.Font("fonts/Pixelify_Sans/PixelifySans-Medium.ttf", 30)
         title_text = font.render("Settings", True, dark_brown)
         screen.blit(title_text, (50, 50))
-        
+
         # sliders and bars
         pygame.draw.polygon(screen, dark_brown, [(50, 100), (1230, 100), (1230, 110), (50, 110)])
         for y in (150, 300, 450):
             pygame.draw.rect(screen, wheat, pygame.Rect(175, y, 900, 100), border_radius=20)
             pygame.draw.rect(screen, dark_brown, pygame.Rect(450, y + 45, 600, 10), border_radius=20)
-        
+
         # slider buttons
         pygame.draw.rect(screen, bright_brown, master_slider, border_radius=30)
         pygame.draw.rect(screen, bright_brown, sfx_slider, border_radius=30)
         pygame.draw.rect(screen, bright_brown, music_slider, border_radius=30)
-        
+
         # volume labels
         screen.blit(font.render("Master Volume", True, dark_brown), (200, 180))
         screen.blit(font.render("SFX Volume", True, dark_brown), (200, 330))

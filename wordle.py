@@ -31,7 +31,7 @@ target_word = eng_word.upper()
 # Functions
 def draw_grid(guesses, colors, current_guess, guess_count):
     screen.fill(WHITE)
-    
+
     for row in range(ROWS):
         for col in range(COLS):
             rect = pygame.Rect(col * (CELL_SIZE + MARGIN) + MARGIN, 
@@ -52,7 +52,7 @@ def draw_grid(guesses, colors, current_guess, guess_count):
 def check_word(guess, target):
     result = ['gray'] * len(target)
     target_chars = list(target)
-    
+
     # First pass: Check for correct positions
     for i in range(len(target)):
         if guess[i] == target[i]:
