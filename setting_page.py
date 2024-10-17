@@ -25,10 +25,10 @@ def setting_page():
     next = pygame.transform.scale(next, (80, 80))
     next_hover = pygame.transform.scale(next_hover, (80, 80))
 
-    # slider positions
-    master_slider = pygame.Rect(450, 185, 30, 30)
-    sfx_slider = pygame.Rect(450, 335, 30, 30)
-    music_slider = pygame.Rect(450, 485, 30, 30)
+    # slider positions default at 100%
+    master_slider = pygame.Rect(1020, 185, 30, 30)
+    sfx_slider = pygame.Rect(1020, 335, 30, 30)
+    music_slider = pygame.Rect(1020, 485, 30, 30)
 
     # flags for dragging
     dragging_master = False
