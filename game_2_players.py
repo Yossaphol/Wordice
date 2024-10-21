@@ -4,7 +4,8 @@ from player_profile import profile
 import random
 from turn_player import turn_player
 from winner import winner
-from wordle import *
+from new_wordle import *
+from vocab import *
 
 def game_2_players():
     """return screen for selecting game mode"""
@@ -16,8 +17,7 @@ def game_2_players():
     sound.play()
 
     running = True
-    
-    wordle_state = True
+    win = False
 
     bright_brown = 169, 161, 140
     wheat = 245,222,179
@@ -95,6 +95,7 @@ def game_2_players():
     pos_1 = 0
     pos_2 = 0
     alert = False
+    total_turn = 0
 
     dark_brown = 73, 56, 41
     burly_wood = 222,184,135
@@ -107,7 +108,8 @@ def game_2_players():
     rolling_img_cnt = 0
     dice_num_image = dice_images[0]
     alert = False
-
+    who_win = "player1"
+    lose = False
 
     while running:
 
@@ -158,96 +160,100 @@ def game_2_players():
 
 
         if not alert:
-            describe = pygame.font.Font("fonts/Pixelify.ttf", 50)
-            describe = describe.render("Press space bar for next step", True, "RED", "WHITE")
+            describes = pygame.font.Font("fonts/Pixelify.ttf", 50)
+            describe = describes.render("Press space bar for next step", True, "RED", "WHITE")
             screen.blit(describe, (300, 640))
+
+            turn_remain = describes.render("TURN REMAINING : ", True, dark_brown)
+            remain = describes.render(f"{15 - total_turn}", True, red)
+            screen.blit(turn_remain, (350, 30))
+            screen.blit(remain, (800, 30))
 
             if key[pygame.K_SPACE]:
                 alert = not alert
                 alert = True
-                wordle_state = True
 
         # alert box code
         else:
-
-            if wordle_state:
-                wordle()
-                if not wordle():
-                    wordle_state = False
-
+            if not win:
+                turn = who_win
+                win, lose, who_win = wordle(turn)
             else:
+                if win:
+                    turn = who_win
+                    mouse = pygame.mouse.get_pos()
+                    click = pygame.mouse.get_pressed()
 
-                mouse = pygame.mouse.get_pos()
-                click = pygame.mouse.get_pressed()
+                    dice_images = [pygame.image.load(f"images/dice/{num}.png") for num in range(1, 7)]
+                    dice_rolling_images = [pygame.image.load(f"images/dice/{num}.png") for num in range(1, 7)]
 
-                dice_images = [pygame.image.load(f"images/dice/{num}.png") for num in range(1, 7)]
-                dice_rolling_images = [pygame.image.load(f"images/dice/{num}.png") for num in range(1, 7)]
-
-                pygame.draw.rect(screen, grey, (243, 113, 803, 503), 0, 0, 20, 20, 20, 20)
-                pygame.draw.rect(screen, burly_wood, (240, 110, 800, 500), 0, 0, 20, 20, 20, 20)
+                    pygame.draw.rect(screen, grey, (243, 113, 803, 503), 0, 0, 20, 20, 20, 20)
+                    pygame.draw.rect(screen, burly_wood, (240, 110, 800, 500), 0, 0, 20, 20, 20, 20)
 
 
-                sound = pygame.mixer.Sound("sounds/click.MP3")
+                    sound = pygame.mixer.Sound("sounds/click.MP3")
 
-                # random button
-                if 600 > mouse[0] > 400 and 540 > mouse[1] > 500:
-                    pygame.draw.rect(screen, "BLACK", (403, 503, 200,40), 0, 0, 30 ,30, 30, 30)
-                    pygame.draw.rect(screen, silver, (400,500,200,40), 0, 0, 30 ,30, 30, 30)
+                    # random button
+                    if 600 > mouse[0] > 400 and 540 > mouse[1] > 500:
+                        pygame.draw.rect(screen, "BLACK", (403, 503, 200,40), 0, 0, 30 ,30, 30, 30)
+                        pygame.draw.rect(screen, silver, (400,500,200,40), 0, 0, 30 ,30, 30, 30)
 
-                    if click[0] == 1:
-                        sound.play()
-                        is_rolling = True
-                        rolling_img_cnt = 0
+                        if click[0] == 1:
+                            sound.play()
+                            is_rolling = True
+                            rolling_img_cnt = 0
 
-                else:
-                    pygame.draw.rect(screen, "BLACK", (403, 503, 200,40), 0, 0, 30 ,30, 30, 30)
-                    pygame.draw.rect(screen, light_steel_blue, (400,500,200,40), 0, 0, 30 ,30, 30, 30)
+                    else:
+                        pygame.draw.rect(screen, "BLACK", (403, 503, 200,40), 0, 0, 30 ,30, 30, 30)
+                        pygame.draw.rect(screen, light_steel_blue, (400,500,200,40), 0, 0, 30 ,30, 30, 30)
 
-                if is_rolling:
-                    screen.blit(dice_rolling_images[rolling_img_cnt], (595, 350))
-                    rolling_img_cnt += 1
-                    if rolling_img_cnt >= len(dice_rolling_images):
-                        rolling_img_cnt = 0
-                        is_rolling = False
-                        rand_num = random.randint(0, 5)
-                        dice_num_image = dice_images[rand_num]
+                    if is_rolling:
+                        screen.blit(dice_rolling_images[rolling_img_cnt], (595, 350))
+                        rolling_img_cnt += 1
+                        if rolling_img_cnt >= len(dice_rolling_images):
+                            rolling_img_cnt = 0
+                            is_rolling = False
+                            rand_num = random.randint(0, 5)
+                            dice_num_image = dice_images[rand_num]
 
-                else:
-                    screen.blit(dice_num_image, (595, 350))
+                    else:
+                        screen.blit(dice_num_image, (595, 350))
 
-                smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
-                text_surface, text_rect = text_object("RANDOM", smallText)
-                text_rect.center = ((500), (520))
-                screen.blit(text_surface, text_rect)
+                    smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
+                    text_surface, text_rect = text_object("RANDOM", smallText)
+                    text_rect.center = ((500), (520))
+                    screen.blit(text_surface, text_rect)
 
-                # movement button
-                if 880 > mouse[0] > 680 and 540 > mouse[1] > 500:
-                    pygame.draw.rect(screen, "BLACK", (683, 503, 200,40), 0, 0, 30 ,30, 30, 30)
-                    pygame.draw.rect(screen, silver, (680,500,200,40), 0, 0, 30 ,30, 30, 30)
+                    # movement button
+                    if 880 > mouse[0] > 680 and 540 > mouse[1] > 500:
+                        pygame.draw.rect(screen, "BLACK", (683, 503, 200,40), 0, 0, 30 ,30, 30, 30)
+                        pygame.draw.rect(screen, silver, (680,500,200,40), 0, 0, 30 ,30, 30, 30)
 
-                    if click[0] == 1:
-                        sound.play()
-                        alert = False
-                        if turn == "player1":
-                            turn = "player2"
-                            if pos_1 + rand_num + 1 > len(p1_pos) - 1:
-                                pos_1 = 35
+                        if click[0] == 1:
+                            sound.play()
+                            alert = False
+                            win = False
+                            total_turn += 1
+                            if turn == "player1":
+                                turn = "player2"
+                                if pos_1 + rand_num + 1 > len(p1_pos) - 1:
+                                    pos_1 = 35
+                                else:
+                                    pos_1 += rand_num + 1
                             else:
-                                pos_1 += rand_num + 1
-                        else:
-                            turn = "player1"
-                            if pos_2 + rand_num + 1 > len(p2_pos) - 1:
-                                pos_2 = 35
-                            else:
-                                pos_2 += rand_num + 1
-                else:
-                    pygame.draw.rect(screen, "BLACK", (683, 503, 200,40), 0, 0, 30 ,30, 30, 30)
-                    pygame.draw.rect(screen, light_steel_blue, (680,500,200,40), 0, 0, 30 ,30, 30, 30)
+                                turn = "player1"
+                                if pos_2 + rand_num + 1 > len(p2_pos) - 1:
+                                    pos_2 = 35
+                                else:
+                                    pos_2 += rand_num + 1
+                    else:
+                        pygame.draw.rect(screen, "BLACK", (683, 503, 200,40), 0, 0, 30 ,30, 30, 30)
+                        pygame.draw.rect(screen, light_steel_blue, (680,500,200,40), 0, 0, 30 ,30, 30, 30)
 
-                smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
-                text_surface, text_rect = text_object("MOVE", smallText)
-                text_rect.center = ((780), (520))
-                screen.blit(text_surface, text_rect)
+                    smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
+                    text_surface, text_rect = text_object("MOVE", smallText)
+                    text_rect.center = ((780), (520))
+                    screen.blit(text_surface, text_rect)
 
         profile(130, 630, 110, 30, 70, brown, "PLAYER 1", player_1)
         profile(1150, 120, 110, 30, 70, brown, "PLAYER 2", player_2)
@@ -257,7 +263,7 @@ def game_2_players():
         else:
             turn_player(1120, 130)
 
-        if pos_1 >= len(p1_pos) - 1 or pos_2 >= len(p2_pos) - 1:
+        if pos_1 >= len(p1_pos) - 1 or pos_2 >= len(p2_pos) - 1 or total_turn >= 15:
             if pos_1 > pos_2:
                 winner("PLAYER1", pos_1, pos_2)
             else:
@@ -265,7 +271,8 @@ def game_2_players():
 
         pygame.time.delay(100)
         pygame.display.update()
-
         clock.tick(fps)
 
     pygame.quit()
+
+
