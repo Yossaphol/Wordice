@@ -165,9 +165,10 @@ def game_2_players():
 
         if not alert:
             describes = pygame.font.Font("fonts/Pixelify.ttf", 50)
-            describe = describes.render("Press space bar for next step", True, "RED", "WHITE")
+            describe = describes.render("Press space bar for next step", True, "RED", white)
             screen.blit(describe, (300, 640))
 
+            pygame.draw.rect(screen, wheat, (330, 30, 550, 60), 0, 0, 40, 40, 40, 40)
             turn_remain = describes.render("TURN REMAINING : ", True, dark_brown)
             remain = describes.render(f"{20 - total_turn}", True, red)
             screen.blit(turn_remain, (350, 30))

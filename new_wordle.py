@@ -62,6 +62,7 @@ def wordle(turn, total_turn, pos_1, pos_2, p1_pos, p2_pos, point_player1, point_
     brown = 185, 156, 107
     dark_golden_rod = 184,134,11
     golden_rod = 218,165,32
+    wheat = 245,222,179
 
     background = pygame.image.load("images/background_game.jpg")
     background = pygame.transform.scale(background, (1280, 720))
@@ -101,6 +102,7 @@ def wordle(turn, total_turn, pos_1, pos_2, p1_pos, p2_pos, point_player1, point_
         pygame.draw.rect(screen, grey, (243, 113, 803, 503), 0, 0, 20, 20, 20, 20)
         pygame.draw.rect(screen, burly_wood, (240, 110, 800, 500), 0, 0, 20, 20, 20, 20)
 
+        pygame.draw.rect(screen, wheat, (330, 30, 550, 60), 0, 0, 40, 40, 40, 40)
         describes = pygame.font.Font("fonts/Pixelify.ttf", 50)
         turn_remain = describes.render("TURN REMAINING : ", True, dark_brown)
         remain = describes.render(f"{20 - total_turn}", True, red)
