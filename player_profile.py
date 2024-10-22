@@ -17,15 +17,10 @@ def profile(x, y, w, h, r, color, name, picture):
     screen.blit(picture, (x - 100, y - 130))
 
     # draw a point bar
-    pygame.draw.rect(screen, "BLACK", (x - 93, y + 44, 180, 34), 0, 0, 50, 0, 50)
-    pygame.draw.rect(screen, golden_rod, (x - 90, y + 46, w, h), 0, 0, 50, 0, 50)
+    pygame.draw.rect(screen, "BLACK", (x - 93, y + 44, 180, 34), 0, 0, 50, 50, 50, 50)
 
     #name
     text = pygame.font.Font("fonts/Pixelify.ttf", 20)
     name = text.render(name, True, "WHITE")
     screen.blit(name, (x - 42, y + 48))
 
-    # diamond
-    diamond = pygame.image.load("images/diamond.png")
-    diamond = pygame.transform.scale(diamond, (60, 60))
-    screen.blit(diamond, (x + h + 25, y + r - 42))

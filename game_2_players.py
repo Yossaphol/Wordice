@@ -3,7 +3,7 @@ import pygame
 from player_profile import profile
 import random
 from turn_player import turn_player
-from winner import winner
+from winner import winner_alert
 from new_wordle import *
 from vocab import *
 
@@ -13,11 +13,15 @@ def game_2_players():
 
     pygame.display.set_caption("Bordice 1Vs1")
     screen = pygame.display.set_mode((1280, 720))
-    sound = pygame.mixer.Sound("sounds/sound.mp3")
-    sound.play()
+    pygame.mixer.music.load("sounds/sound.mp3")
+    pygame.mixer.music.play(-1)
 
     running = True
     win = False
+    a_point = 0
+    b_point = 0
+    total_a = 0
+    total_b = 0
 
     bright_brown = 169, 161, 140
     wheat = 245,222,179
@@ -165,7 +169,7 @@ def game_2_players():
             screen.blit(describe, (300, 640))
 
             turn_remain = describes.render("TURN REMAINING : ", True, dark_brown)
-            remain = describes.render(f"{15 - total_turn}", True, red)
+            remain = describes.render(f"{20 - total_turn}", True, red)
             screen.blit(turn_remain, (350, 30))
             screen.blit(remain, (800, 30))
 
@@ -177,9 +181,14 @@ def game_2_players():
         else:
             if not win:
                 turn = who_win
-                win, lose, who_win = wordle(turn)
+                win, lose, who_win, total_turn, a_point, b_point = wordle(turn, total_turn, pos_1, pos_2, p1_pos, p2_pos, total_a, total_b)
+                total_a = a_point
+                total_b = b_point
             else:
                 if win:
+                    total_a = a_point
+                    total_b = b_point
+
                     turn = who_win
                     mouse = pygame.mouse.get_pos()
                     click = pygame.mouse.get_pressed()
@@ -233,7 +242,6 @@ def game_2_players():
                             sound.play()
                             alert = False
                             win = False
-                            total_turn += 1
                             if turn == "player1":
                                 turn = "player2"
                                 if pos_1 + rand_num + 1 > len(p1_pos) - 1:
@@ -255,24 +263,24 @@ def game_2_players():
                     text_rect.center = ((780), (520))
                     screen.blit(text_surface, text_rect)
 
-        profile(130, 630, 110, 30, 70, brown, "PLAYER 1", player_1)
-        profile(1150, 120, 110, 30, 70, brown, "PLAYER 2", player_2)
+        profile(130, 630, total_a, 30, 70, brown, "PLAYER 1", player_1)
+        profile(1150, 120, total_b, 30, 70, brown, "PLAYER 2", player_2)
 
         if turn == "player1":
             turn_player(90, 640)
         else:
             turn_player(1120, 130)
 
-        if pos_1 >= len(p1_pos) - 1 or pos_2 >= len(p2_pos) - 1 or total_turn >= 15:
-            if pos_1 > pos_2:
-                winner("PLAYER1", pos_1, pos_2)
+        if pos_1 >= len(p1_pos) - 1 or pos_2 >= len(p2_pos) - 1 or total_turn >= 20:
+            if pos_1 + total_a > pos_2 + total_b:
+                winner_alert("PLAYER1", total_a + pos_1, total_b + pos_2)
+            elif pos_1 + total_a == pos_2 + total_b:
+                draw(total_a + pos_1, total_b + pos_2)
             else:
-                winner("PLAYER2", pos_1, pos_2)
+                winner_alert("PLAYER2", total_a + pos_1, total_b + pos_2)
 
         pygame.time.delay(100)
         pygame.display.update()
         clock.tick(fps)
 
     pygame.quit()
-
-
