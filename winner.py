@@ -17,6 +17,17 @@ def winner_alert(winner_name, a_point, b_point):
     grey = 128,128,128
     brown = 185, 156, 107
     golden_rod = 218,165,32
+    
+    # map
+    map_game = pygame.image.load("images/game_map_2.png")
+    map_game = pygame.transform.scale(map_game, (1290, 730))
+
+    # background
+    background = pygame.image.load("images/background_game.jpg")
+    background = pygame.transform.scale(background, (1280, 720))
+
+    screen.blit(background, (0, 0))
+    screen.blit(map_game, (0, 0))
 
     pygame.draw.rect(screen, grey, (243, 113, 803, 503), 0, 0, 20, 20, 20, 20)
     pygame.draw.rect(screen, burly_wood, (240, 110, 800, 500), 0, 0, 20, 20, 20, 20)
@@ -39,10 +50,10 @@ def winner_alert(winner_name, a_point, b_point):
     pygame.draw.circle(screen, brown, (640, 320), 100)
 
     pygame.draw.rect(screen, "BLACK", (400, 500, 185, 45), 0, 0, 50, 50, 50, 50)
-    pygame.draw.rect(screen, golden_rod, (400, 500, 185 * (a_point/200), 40), 0, 0, 50, 0, 50, 0)
+    pygame.draw.rect(screen, golden_rod, (405, 503, 185 * (a_point/200), 40), 0, 0, 50, 50, 50, 50)
 
     pygame.draw.rect(screen, "BLACK", (800, 500, 185, 45), 0, 0, 50, 50, 50, 50)
-    pygame.draw.rect(screen, golden_rod, (800, 500, 185 * (b_point/200), 40), 0, 0, 50, 0, 50, 0)
+    pygame.draw.rect(screen, golden_rod, (805, 503, 185 * (b_point/200), 40), 0, 0, 50, 50, 50, 50)
 
     duck1 = pygame.image.load("images/player_1.png")
     duck1 = pygame.transform.scale(duck1, (150, 150))
@@ -77,6 +88,17 @@ def draw( a_point, b_point):
     grey = 128,128,128
     brown = 185, 156, 107
     golden_rod = 218,165,32
+    
+    # map
+    map_game = pygame.image.load("images/game_map_2.png")
+    map_game = pygame.transform.scale(map_game, (1290, 730))
+
+    # background
+    background = pygame.image.load("images/background_game.jpg")
+    background = pygame.transform.scale(background, (1280, 720))
+
+    screen.blit(background, (0, 0))
+    screen.blit(map_game, (0, 0))
 
     pygame.draw.rect(screen, grey, (243, 113, 803, 503), 0, 0, 20, 20, 20, 20)
     pygame.draw.rect(screen, burly_wood, (240, 110, 800, 500), 0, 0, 20, 20, 20, 20)

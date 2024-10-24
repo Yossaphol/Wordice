@@ -22,6 +22,8 @@ def game_2_players():
     b_point = 0
     total_a = 0
     total_b = 0
+    final_point_a = 0
+    final_point_b = 0
 
     bright_brown = 169, 161, 140
     wheat = 245,222,179
@@ -98,8 +100,10 @@ def game_2_players():
     dice_num_image = dice_images[0]
     pos_1 = 0
     pos_2 = 0
+    final_point_a = 0
+    final_point_b = 0
     alert = False
-    total_turn = 0
+    total_turn = 17
 
     dark_brown = 73, 56, 41
     burly_wood = 222,184,135
@@ -182,7 +186,7 @@ def game_2_players():
         else:
             if not win:
                 turn = who_win
-                win, lose, who_win, total_turn, a_point, b_point = wordle(turn, total_turn, pos_1, pos_2, p1_pos, p2_pos, total_a, total_b)
+                win, lose, who_win, total_turn, a_point, b_point, final_point_a, final_point_b = wordle(turn, total_turn, total_a, total_b, final_point_a, final_point_b)
                 total_a = a_point
                 total_b = b_point
             else:
@@ -264,8 +268,8 @@ def game_2_players():
                     text_rect.center = ((780), (520))
                     screen.blit(text_surface, text_rect)
 
-        profile(130, 630, total_a, 30, 70, brown, "PLAYER 1", player_1)
-        profile(1150, 120, total_b, 30, 70, brown, "PLAYER 2", player_2)
+        profile(130, 630, total_a, 70, brown, "PLAYER 1", player_1)
+        profile(1150, 120, total_b, 70, brown, "PLAYER 2", player_2)
 
         if turn == "player1":
             turn_player(90, 640)
@@ -273,12 +277,12 @@ def game_2_players():
             turn_player(1120, 130)
 
         if pos_1 >= len(p1_pos) - 1 or pos_2 >= len(p2_pos) - 1 or total_turn >= 20:
-            if pos_1 + total_a > pos_2 + total_b:
-                winner_alert("PLAYER1", total_a + pos_1, total_b + pos_2)
-            elif pos_1 + total_a == pos_2 + total_b:
-                draw(total_a + pos_1, total_b + pos_2)
+            if pos_1 + final_point_a > pos_2 + final_point_b:
+                winner_alert("PLAYER1", final_point_a + pos_1, final_point_b + pos_2)
+            elif pos_1 + final_point_a == pos_2 + final_point_b:
+                draw(final_point_a + pos_1, final_point_b + pos_2)
             else:
-                winner_alert("PLAYER2", total_a + pos_1, total_b + pos_2)
+                winner_alert("PLAYER2", final_point_a + pos_1, final_point_b + pos_2)
 
         pygame.time.delay(100)
         pygame.display.update()
