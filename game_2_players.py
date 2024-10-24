@@ -103,7 +103,7 @@ def game_2_players():
     final_point_a = 0
     final_point_b = 0
     alert = False
-    total_turn = 17
+    total_turn = 0
 
     dark_brown = 73, 56, 41
     burly_wood = 222,184,135
