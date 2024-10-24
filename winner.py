@@ -50,10 +50,10 @@ def winner_alert(winner_name, a_point, b_point):
     pygame.draw.circle(screen, brown, (640, 320), 100)
 
     pygame.draw.rect(screen, "BLACK", (400, 500, 185, 45), 0, 0, 50, 50, 50, 50)
-    pygame.draw.rect(screen, golden_rod, (405, 503, 185 * (a_point/200), 40), 0, 0, 50, 50, 50, 50)
+    pygame.draw.rect(screen, golden_rod, (405, 503, min(185 * (a_point/300), 185), 40), 0, 0, 50, 50, 50, 50)
 
     pygame.draw.rect(screen, "BLACK", (800, 500, 185, 45), 0, 0, 50, 50, 50, 50)
-    pygame.draw.rect(screen, golden_rod, (805, 503, 185 * (b_point/200), 40), 0, 0, 50, 50, 50, 50)
+    pygame.draw.rect(screen, golden_rod, (805, 503, (185 * (b_point/300), 185), 40), 0, 0, 50, 50, 50, 50)
 
     duck1 = pygame.image.load("images/player_1.png")
     duck1 = pygame.transform.scale(duck1, (150, 150))
@@ -119,10 +119,10 @@ def draw( a_point, b_point):
     pygame.draw.circle(screen, brown, (640, 320), 100)
 
     pygame.draw.rect(screen, "BLACK", (400, 500, 185, 45), 0, 0, 50, 50, 50, 50)
-    pygame.draw.rect(screen, golden_rod, (400, 500, 185 * (a_point/200), 40), 0, 0, 50, 0, 50, 0)
+    pygame.draw.rect(screen, golden_rod, (400, 500, min(185 * (a_point/200), 185), 40), 0, 0, 50, 0, 50, 0)
 
     pygame.draw.rect(screen, "BLACK", (800, 500, 185, 45), 0, 0, 50, 50, 50, 50)
-    pygame.draw.rect(screen, golden_rod, (800, 500, 185 * (b_point/200), 40), 0, 0, 50, 0, 50, 0)
+    pygame.draw.rect(screen, golden_rod, (800, 500, min(185 * (b_point/300), 185), 40), 0, 0, 50, 0, 50, 0)
 
     duck1 = pygame.image.load("images/player_1.png")
     duck1 = pygame.transform.scale(duck1, (150, 150))

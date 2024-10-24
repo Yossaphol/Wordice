@@ -37,6 +37,9 @@ def check_guess(turns, word, user_guess, screen):
             point += 1
             word_checklist[word_checklist.index(user_guess[x])] = None
 
+    if guess_color_code == [green for _ in range(len(word))]:
+        point += 3
+
     spacing = 0
     for x in range(len(word)):
         rendered_char = font.render(user_guess[x], True, black)
