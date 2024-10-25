@@ -15,7 +15,10 @@ def how_to_page():
 
     mouse = pygame.mouse.get_pressed()
     scrolls = 0
-    
+
+    pygame.mixer.music.load("sounds/sound.mp3")
+    pygame.mixer.music.play(-1)
+
     back = pygame.image.load("images/back.png")
     back_hover = pygame.image.load("images/back_hover.png")
     back = pygame.transform.scale(back, (80, 80))

@@ -2,10 +2,10 @@
 import pygame
 import pygame.locals
 import sys
-from select_player import select_player
 from setting_page import setting_page
 from how_to_page import how_to_page
 from menu import button_menu
+from game_2_players import game_2_players
 
 pygame.init()
 
@@ -21,6 +21,9 @@ def main_page():
     down_duck = True
 
     time = 0
+
+    pygame.mixer.music.load("sounds/sound.mp3")
+    pygame.mixer.music.play(-1)
 
     pygame.display.set_caption("Bordice")
 
@@ -125,7 +128,7 @@ def main_page():
                 down = True
 
         # button on screen
-        button_menu(185, 280, start_w, start_h, start, start_hover, select_player)
+        button_menu(185, 280, start_w, start_h, start, start_hover, game_2_players)
         button_menu(155, 370,setting_w, setting_h, setting, setting_hover, setting_page)
         button_menu(60, 460, how_w, how_h, how, how_hover, how_to_page)
         button_menu(185, 550, quit_w, quit_h, quit, quit_hover, sys.exit)

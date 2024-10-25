@@ -11,7 +11,7 @@ def game_2_players():
     """return screen for selecting game mode"""
     from button import text_object
 
-    pygame.display.set_caption("Bordice 1Vs1")
+    pygame.display.set_caption("wordice")
     screen = pygame.display.set_mode((1280, 720))
     pygame.mixer.music.load("sounds/sound.mp3")
     pygame.mixer.music.play(-1)
