@@ -4,7 +4,7 @@ from player_profile import profile
 import random
 from turn_player import turn_player
 from winner import winner_alert
-from new_wordle import *
+from wordle import *
 from vocab import *
 
 def game_2_players():
@@ -15,6 +15,8 @@ def game_2_players():
     screen = pygame.display.set_mode((1280, 720))
     pygame.mixer.music.load("sounds/sound.mp3")
     pygame.mixer.music.play(-1)
+
+    font = pygame.font.Font("fonts/Pixelify.ttf", 40)
 
     running = True
     win = False
@@ -206,6 +208,9 @@ def game_2_players():
 
 
                     sound = pygame.mixer.Sound("sounds/click.MP3")
+                    
+                    your_text = font.render("This is time to growth!!!", True, dark_brown)
+                    screen.blit(your_text, (420, 200))
 
                     # random button
                     if 600 > mouse[0] > 400 and 540 > mouse[1] > 500:
@@ -222,7 +227,7 @@ def game_2_players():
                         pygame.draw.rect(screen, light_steel_blue, (400,500,200,40), 0, 0, 30 ,30, 30, 30)
 
                     if is_rolling:
-                        screen.blit(dice_rolling_images[rolling_img_cnt], (595, 350))
+                        screen.blit(dice_rolling_images[rolling_img_cnt], (595, 320))
                         rolling_img_cnt += 1
                         if rolling_img_cnt >= len(dice_rolling_images):
                             rolling_img_cnt = 0
@@ -231,7 +236,7 @@ def game_2_players():
                             dice_num_image = dice_images[rand_num]
 
                     else:
-                        screen.blit(dice_num_image, (595, 350))
+                        screen.blit(dice_num_image, (595, 320))
 
                     smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
                     text_surface, text_rect = text_object("RANDOM", smallText)
