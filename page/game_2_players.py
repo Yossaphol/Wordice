@@ -1,15 +1,15 @@
 """selecting game mode"""
 import pygame
-from player_profile import profile
+from object.player_profile import profile
 import random
-from turn_player import turn_player
-from winner import winner_alert
-from wordle import *
-from vocab import *
+from object.turn_player import turn_player
+from object.winner import winner_alert
+from wordle_sys.wordle import *
+from wordle_sys.vocab import *
 
 def game_2_players():
     """return screen for selecting game mode"""
-    from button import text_object
+    from buttons.button import text_object
 
     pygame.display.set_caption("wordice")
     screen = pygame.display.set_mode((1280, 720))

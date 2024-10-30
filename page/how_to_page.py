@@ -1,6 +1,6 @@
 """selecting game mode"""
 import pygame
-from menu import button_menu
+from buttons.menu import button_menu
 
 def how_to_page():
     """return screen for selecting game mode"""

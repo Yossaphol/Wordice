@@ -1,7 +1,7 @@
 """winner alert box"""
 import pygame
 import sys
-from menu import button_menu
+from buttons.menu import button_menu
 
 screen = pygame.display.set_mode((1280, 720))
 

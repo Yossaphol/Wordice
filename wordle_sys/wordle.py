@@ -1,11 +1,11 @@
 import pygame
 import sys
 from pygame.locals import *
-from vocab import *
-from player_profile import profile
-from turn_player import turn_player
-from button import text_object
-from winner import *
+from wordle_sys.vocab import *
+from object.player_profile import profile
+from object.turn_player import turn_player
+from buttons.button import text_object
+from object.winner import *
 pygame.init()
 
 white = (255, 255, 255)

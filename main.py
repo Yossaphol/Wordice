@@ -2,10 +2,10 @@
 import pygame
 import pygame.locals
 import sys
-from setting_page import setting_page
-from how_to_page import how_to_page
-from menu import button_menu
-from game_2_players import game_2_players
+from page.setting_page import setting_page
+from page.how_to_page import how_to_page
+from buttons.menu import button_menu
+from page.game_2_players import game_2_players
 
 pygame.init()
 

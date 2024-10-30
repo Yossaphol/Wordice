@@ -1,7 +1,7 @@
 """selecting game mode"""
 import pygame
-from button import *
-from menu import button_menu
+from buttons.button import *
+from buttons.menu import button_menu
 
 # initialize volume levels
 master_percent = 100
