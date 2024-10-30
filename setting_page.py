@@ -3,8 +3,14 @@ import pygame
 from button import *
 from menu import button_menu
 
+# initialize volume levels
+master_percent = 100
+sfx_percent = 100
+music_percent = 100
+
 def setting_page():
     """return screen for selecting game mode"""
+    global master_percent, sfx_percent, music_percent
 
     from main import main_page
     pygame.display.set_caption("Setting")
@@ -28,12 +34,10 @@ def setting_page():
     next = pygame.transform.scale(next, (80, 80))
     next_hover = pygame.transform.scale(next_hover, (80, 80))
 
-    # slider positions default at 100%
-    master_slider = pygame.Rect(1020, 185, 30, 30)
-    sfx_slider = pygame.Rect(1020, 335, 30, 30)
-    music_slider = pygame.Rect(1020, 485, 30, 30)
+    master_slider = pygame.Rect(450 + (master_percent / 100) * (1020 - 450), 185, 30, 30)
+    sfx_slider = pygame.Rect(450 + (sfx_percent / 100) * (1020 - 450), 335, 30, 30)
+    music_slider = pygame.Rect(450 + (music_percent / 100) * (1020 - 450), 485, 30, 30)
 
-    # flags for dragging
     dragging_master = False
     dragging_sfx = False
     dragging_music = False
@@ -47,16 +51,23 @@ def setting_page():
                 running = False
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                # start dragging if slider is clicked
-                if master_slider.collidepoint(event.pos):
+                mouse_pos = event.pos
+                if master_slider.collidepoint(mouse_pos):
                     dragging_master = True
-                elif sfx_slider.collidepoint(event.pos):
+                elif sfx_slider.collidepoint(mouse_pos):
                     dragging_sfx = True
-                elif music_slider.collidepoint(event.pos):
+                elif music_slider.collidepoint(mouse_pos):
                     dragging_music = True
+                elif back.get_rect(topleft=(30, 620)).collidepoint(mouse_pos):
+                    # Go back to main page if back button clicked
+                    main_page()
+                    return
+                elif next.get_rect(topleft=(1170, 620)).collidepoint(mouse_pos):
+                    # Go to next page if next button clicked
+                    main_page()
+                    return
 
             elif event.type == pygame.MOUSEBUTTONUP:
-                # stop dragging and print the percentage
                 if dragging_master:
                     master_percent = calculate_percentage(master_slider.x)
                     print("Master Volume:", master_percent, "%")
@@ -66,12 +77,10 @@ def setting_page():
                 if dragging_music:
                     music_percent = calculate_percentage(music_slider.x)
                     print("Music Volume:", music_percent, "%")
-
-                # reset dragging flags
+                
                 dragging_master = dragging_sfx = dragging_music = False
 
             elif event.type == pygame.MOUSEMOTION:
-                # update slider position while dragging
                 if dragging_master:
                     master_slider.x = max(450, min(1020, event.pos[0]))
                 if dragging_sfx:
@@ -102,8 +111,8 @@ def setting_page():
         screen.blit(font.render("Music Volume", True, dark_brown), (200, 480))
 
         # navigation buttons
-        button_menu(30, 620, 150, 60, back, back_hover, main_page)
-        button_menu(1170, 620, 150, 60, next, next_hover, main_page)
+        screen.blit(back, (30, 620))
+        screen.blit(next, (1170, 620))
 
         pygame.display.update()
 
