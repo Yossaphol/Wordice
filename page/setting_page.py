@@ -117,3 +117,4 @@ def setting_page():
         pygame.display.update()
 
     pygame.quit()
+    return sfx_percent, music_percent, master_percent
