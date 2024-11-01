@@ -34,7 +34,9 @@ def how_to_page():
     howtoplay = pygame.transform.scale(howtoplay, (1290, 730))
 
     #how to image run when click
-    #howto_pic = ["wait for img url pap krub"]
+    #howto_pic = ["images/hottoplay/How To Play.zip - 3.png","images/hottoplay/How To Play.zip - 4.png",
+    # "images/hottoplay/How To Play.zip - 5.png",images/hottoplay/How To Play.zip - 6.png","images/hottoplay/How To Play.zip - 7.png",
+    # "images/hottoplay/How To Play.zip - 8.png","images/hottoplay/How To Play.zip - 9.png"]
     #pic_index = 0
 
     #current_pic = pygame.image.load(howto_pic[pic_index])
