@@ -154,18 +154,18 @@ def game_2_players():
 
 
         # duck's direction
-        if pos_1 < 5 or pos_1 >= 25:
+        if pos_1 < 5 or pos_1 >= 24:
             screen.blit(backside1, p1_pos[pos_1])
-        elif 9 <= pos_1 < 11 or 13 < pos_1 < 19:
+        elif 8 <= pos_1 < 11 or 13 <= pos_1 < 19:
             screen.blit(duck_1_flip, p1_pos[pos_1])
-        elif 19 <= pos_1 < 25 or 11 <= pos_1 < 14 or 5 <= pos_1 < 9:
+        elif 19 <= pos_1 < 24 or 11 <= pos_1 < 13 or 5 <= pos_1 < 8:
             screen.blit(backside1_flip, p1_pos[pos_1])
 
-        if pos_2 < 5 or pos_2 >= 25:
+        if pos_2 < 5 or pos_2 >= 24:
             screen.blit(backside2, p2_pos[pos_2])
-        elif 9 <= pos_2 < 11 or 13 < pos_2 < 19:
+        elif 8 <= pos_2 < 11 or 13 <= pos_2 < 19:
             screen.blit(duck_2_flip, (p2_pos[pos_2]))
-        elif 19 <= pos_2 < 25 or 11 <= pos_2 < 14 or 5 <= pos_2 < 9:
+        elif 19 <= pos_2 < 24 or 11 <= pos_2 < 13 or 5 <= pos_2 < 8:
             screen.blit(backside2_flip, p2_pos[pos_2])
 
 
