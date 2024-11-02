@@ -41,8 +41,6 @@ def how_to_page():
     #image file of tutorial !!!undone!!!
     #waiting for select chr img /
     howto_pic = [
-        "images/hottoplay/How To Play.zip - 3.png",
-        "images/hottoplay/How To Play.zip - 4.png",
         "images/hottoplay/How To Play.zip - 5.png",
         "images/hottoplay/How To Play.zip - 6.png",
         "images/hottoplay/How To Play.zip - 7.png",
