@@ -38,8 +38,7 @@ def how_to_page():
     quit = pygame.transform.scale(quit, (150, 70))
     quit_hover = pygame.transform.scale(quit_hover, (150, 70))
 
-    #image file of tutorial !!!undone!!!
-    #waiting for select chr img /
+
     howto_pic = [
         "images/hottoplay/How To Play.zip - 2.png",
         "images/hottoplay/How To Play.zip - 5.png",
@@ -94,5 +93,3 @@ def how_to_page():
         pygame.display.update()
 
     pygame.quit()
-
-#bug note : when first press {how to button} at main page
