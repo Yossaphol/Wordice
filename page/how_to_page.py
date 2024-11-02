@@ -20,20 +20,26 @@ def how_to_page():
     pygame.mixer.music.load("sounds/sound.mp3")
     pygame.mixer.music.play(-1)
 
+    #back / left button
     back = pygame.image.load("images/back.png")
     back_hover = pygame.image.load("images/back_hover.png")
     back = pygame.transform.scale(back, (80, 80))
     back_hover = pygame.transform.scale(back_hover, (80, 80))
+
+    #next / right button
     next = pygame.image.load("images/next.png")
     next_hover = pygame.image.load("images/next_hover.png")
     next = pygame.transform.scale(next, (80, 80))
     next_hover = pygame.transform.scale(next_hover, (80, 80))
 
-    #รอแก้pap kruf
-    #howtoplay = pygame.image.load("images/hottoplay/How To Play.zip - 2.png")
-    #howtoplay = pygame.transform.scale(howtoplay, (1290, 730))
+    #quit button
+    quit = pygame.image.load("images/quit.png")
+    quit_hover = pygame.image.load("images/quit_hover.png")
+    quit = pygame.transform.scale(quit, (150, 70))
+    quit_hover = pygame.transform.scale(quit_hover, (150, 70))
 
-    #how to image run when click
+    #image file of tutorial !!!undone!!!
+    #waiting for select chr img /
     howto_pic = [
         "images/hottoplay/How To Play.zip - 3.png",
         "images/hottoplay/How To Play.zip - 4.png",
@@ -62,20 +68,32 @@ def how_to_page():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
 
-                if back.get_rect(topleft=(30, 620)).collidepoint(mouse_pos):
+                # quit button back to main page
+                if quit.get_rect(topleft=(20, 620)).collidepoint(mouse_pos):
                     main_page()
                     return
 
-                elif next.get_rect(topleft=(1170, 620)).collidepoint(mouse_pos):
+                # right click button to change page
+                elif next.get_rect(topleft=(1170, 320)).collidepoint(mouse_pos):
                     pic_index = (pic_index + 1) % len(howto_pic)
                     current_pic = pygame.image.load(howto_pic[pic_index])
                     current_pic = pygame.transform.scale(current_pic, (1290, 730))
 
+                # left click button to change page (left side)
+                elif back.get_rect(topleft=(30, 320)).collidepoint(mouse_pos):
+                    pic_index = (pic_index - 1) % len(howto_pic)
+                    current_pic = pygame.image.load(howto_pic[pic_index])
+                    current_pic = pygame.transform.scale(current_pic, (1290, 730))
 
-        button_menu(30, 620, 150, 60, back, back_hover, main_page)
-        button_menu(1170, 620, 150, 60, next, next_hover)
+        #button position
+        button_menu(20, 620, 150, 60, quit, quit_hover, main_page) # bttom left
+        button_menu(30, 320, 150, 60, back, back_hover) #cent left
+        button_menu(1170, 320, 150, 60, next, next_hover) #cent right
+
         screen.blit(current_pic, (0, 0))
 
         pygame.display.update()
 
     pygame.quit()
+
+#bug note : when first press {how to button} at main page
