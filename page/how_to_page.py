@@ -41,11 +41,11 @@ def how_to_page():
 
     howto_pic = [
         "images/hottoplay/How To Play.zip - 2.png",
-        "images/hottoplay/How To Play.zip - 5.png",
-        "images/hottoplay/How To Play.zip - 6.png",
-        "images/hottoplay/How To Play.zip - 7.png",
-        "images/hottoplay/How To Play.zip - 8.png",
-        "images/hottoplay/How To Play.zip - 9.png"
+        "images/hottoplay/สันคอpscpสไลซ์.zip - 14.png",
+        "images/hottoplay/สันคอpscpสไลซ์.zip - 15.png",
+        "images/hottoplay/สันคอpscpสไลซ์.zip - 16.png",
+        "images/hottoplay/สันคอpscpสไลซ์.zip - 17.png",
+        "images/hottoplay/สันคอpscpสไลซ์.zip - 18.png"
     ]
 
     pic_index = 0
