@@ -32,7 +32,7 @@ def main_page():
 
     # setup images
     background = pygame.image.load("images/background_test.jpg")
-    logo = pygame.image.load("images/logo.png")
+    logo = pygame.image.load("images/logo3.png")
     duck = pygame.image.load("images/duck.png")
     cloud1 = pygame.image.load("images/cloud1.png")
     cloud2 = pygame.image.load("images/cloud2.png")
