@@ -5,9 +5,8 @@ from buttons.menu import button_menu
 
 screen = pygame.display.set_mode((1280, 720))
 
-def winner_alert(winner_name, a_point, b_point):
+def winner_alert(winner_name, a_point, b_point, action):
     """show when any player win"""
-    from main import main_page
     pygame.init()
 
     dark_brown = 73, 56, 41
@@ -74,11 +73,10 @@ def winner_alert(winner_name, a_point, b_point):
     screen.blit(duck2, (670, 425))
     screen.blit(win_duck, (500, 200))
 
-    button_menu(1170, 620, 150, 60, next, next_hover, main_page)
+    button_menu(1170, 620, 150, 60, next, next_hover, action)
     
-def draw( a_point, b_point):
+def draw( a_point, b_point, action):
     """show when any player win"""
-    from main import main_page
     pygame.init()
 
     dark_brown = 73, 56, 41
@@ -140,4 +138,4 @@ def draw( a_point, b_point):
     screen.blit(duck2, (670, 425))
     screen.blit(moo_deng, (500, 200))
 
-    button_menu(1170, 620, 150, 60, next, next_hover, main_page)
+    button_menu(1170, 620, 150, 60, next, next_hover, action)

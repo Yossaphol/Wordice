@@ -201,7 +201,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
             turn_player(1120, 130)
 
         # out of turn remaining
-        if total_turn == 20:
+        if total_turn >= 20:
             return True, False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
 
         # win and move

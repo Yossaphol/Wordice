@@ -13,6 +13,7 @@ pygame.init()
 def game_2_players():
     """return screen for selecting game mode"""
     from buttons.button import text_object
+    from main import main_page
 
     pygame.display.set_caption("wordice")
     screen = pygame.display.set_mode((1280, 720))
@@ -286,11 +287,11 @@ def game_2_players():
 
         if pos_1 >= len(p1_pos) - 1 or pos_2 >= len(p2_pos) - 1 or total_turn >= 20:
             if pos_1 + final_point_a > pos_2 + final_point_b:
-                winner_alert("PLAYER1", final_point_a + pos_1, final_point_b + pos_2)
+                winner_alert("PLAYER1", final_point_a + pos_1, final_point_b + pos_2, main_page)
             elif pos_1 + final_point_a == pos_2 + final_point_b:
-                draw(final_point_a + pos_1, final_point_b + pos_2)
+                draw(final_point_a + pos_1, final_point_b + pos_2, main_page)
             else:
-                winner_alert("PLAYER2", final_point_a + pos_1, final_point_b + pos_2)
+                winner_alert("PLAYER2", final_point_a + pos_1, final_point_b + pos_2, main_page)
 
         pygame.time.delay(100)
         pygame.display.update()
