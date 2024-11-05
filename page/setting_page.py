@@ -28,6 +28,7 @@ def setting_page():
     pygame.mixer.music.load("sounds/sound.mp3")
     pygame.mixer.music.play(-1)
 
+
     back = pygame.image.load("images/back.png")
     back_hover = pygame.image.load("images/back_hover.png")
     back = pygame.transform.scale(back, (80, 80))
@@ -90,6 +91,9 @@ def setting_page():
                     sfx_slider.x = max(450, min(1020, event.pos[0]))
                 if dragging_music:
                     music_slider.x = max(450, min(1020, event.pos[0]))
+            
+        pygame.mixer.music.set_volume(music_percent*0.01)
+
 
         # background and settings title
         screen.fill(brown)
