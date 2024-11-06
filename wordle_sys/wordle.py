@@ -186,12 +186,12 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
         screen.blit(your_text, (280, 500))
         screen.blit(render_guess, (440, 490))
         
-        txt_upper = small.render("type the word", True, dark_brown)
-        txt_middle = small.render("that you think", True, dark_brown)
-        txt_lower = small.render("it will be correct", True, dark_brown)
+        txt_upper = small.render("You have 6 chances", True, dark_brown)
+        txt_middle = small.render("to guess a word!", True, dark_brown)
+        txt_lower = small.render("is correct", True, dark_brown)
         screen.blit(txt_upper, (700, 440))
         screen.blit(txt_middle, (700, 480))
-        screen.blit(txt_lower, (700, 520))
+        # screen.blit(txt_lower, (700, 520))
         
         screen.blit(qeustion_mark, (730, 150))
 
@@ -232,7 +232,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                 pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
                 pygame.draw.rect(screen, light_steel_blue, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
 
-            win_text = big_font.render("You Win!", True, green)
+            win_text = big_font.render("Splendid!", True, green)
             meaning_text = font.render("MEANING :", True, dark_brown)
             screen.blit(meaning_text, (750, 200))
             screen.blit(win_text, (720, 130))
@@ -272,7 +272,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                 pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
                 pygame.draw.rect(screen, light_steel_blue, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
 
-            win_text = big_font.render("You Lose!", True, red)
+            win_text = big_font.render("Tough luck!", True, red)
             meaning_text = font.render("THE WORD IS :", True, dark_brown)
             answer = font.render(word, True, dark_golden_rod)
             screen.blit(win_text, (700, 130))
@@ -318,7 +318,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                 pygame.draw.rect(screen, light_steel_blue, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
 
             win_text = big_font.render("Bonus", True, red)
-            meaning_text = small.render("You can move free!!", True, dark_brown)
+            meaning_text = small.render("Use your free move wisely!", True, dark_brown)
             screen.blit(win_text, (750, 130))
             screen.blit(meaning_text, (690, 200))
 
