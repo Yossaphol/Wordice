@@ -4,7 +4,7 @@ import pygame
 screen = pygame.display.set_mode((1280, 720))
 dark_brown = 73, 56, 41
 
-def button_menu(x, y, w, h, init_images, action_images, action = None):
+def button_menu(x, y, w, h, init_images, action_images, action = None, volume = 100):
     """This is a button Function"""
 
     pygame.init()
@@ -18,6 +18,7 @@ def button_menu(x, y, w, h, init_images, action_images, action = None):
         screen.blit(action_images, (x, y, w, h))
 
         if click[0] == 1 and action != None:
+            sound.set_volume(volume*0.01)
             sound.play()
             action()
 

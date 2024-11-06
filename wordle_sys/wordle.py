@@ -293,7 +293,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
 
             if turn == "player1":
                 point_player1 = 0
-            else:
+            elif turn == "player2":
                 point_player2 = 0
 
             mouse = pygame.mouse.get_pos()
@@ -331,3 +331,4 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
 
         pygame.display.update()
         clock.tick(FPS)
+

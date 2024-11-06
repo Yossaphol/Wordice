@@ -11,7 +11,7 @@ def text_object(txt, font):
     text_surface = font.render(txt, True, dark_brown)
     return text_surface, text_surface.get_rect()
 
-def button(txt, font_size, x, y, w, h, init_color, action_color, action = None):
+def button(txt, font_size, x, y, w, h, init_color, action_color, action = None, volume = 100):
     """This is a button Function"""
     pygame.init()
 
@@ -24,6 +24,7 @@ def button(txt, font_size, x, y, w, h, init_color, action_color, action = None):
         pygame.draw.rect(screen, action_color, (x,y,w,h), 0, 0, 30 ,30, 30, 30)
 
         if click[0] == 1 and action != None:
+            sound.set_volume(volume*0.01)
             sound.play()
             action()
 

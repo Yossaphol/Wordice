@@ -91,7 +91,7 @@ def setting_page():
                     sfx_slider.x = max(450, min(1020, event.pos[0]))
                 if dragging_music:
                     music_slider.x = max(450, min(1020, event.pos[0]))
-            
+
         pygame.mixer.music.set_volume(music_percent*0.01)
 
 
