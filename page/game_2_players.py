@@ -213,7 +213,7 @@ def game_2_players():
 
                     sound = pygame.mixer.Sound("sounds/click.MP3")
                     
-                    your_text = font.render("This is time to growth!!!", True, dark_brown)
+                    your_text = font.render("Time to grow!", True, dark_brown)
                     screen.blit(your_text, (420, 200))
 
                     # random button

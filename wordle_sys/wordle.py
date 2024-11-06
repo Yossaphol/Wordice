@@ -21,7 +21,6 @@ big_font = pygame.font.Font("fonts/Pixelify.ttf", 60)
 
 def show_description(descript, x_start, y_start):
     """Show the multiline of word description"""
-
     brown = 185, 156, 107
     font = pygame.font.Font("fonts/Pixelify.ttf", 20)
 
@@ -30,6 +29,7 @@ def show_description(descript, x_start, y_start):
     x = x_start
     y = y_start
     line_height = font.get_height() + 4
+    space_between_words = 10
 
     for word in words:
         word_t = font.render(word, True, brown)
@@ -37,12 +37,13 @@ def show_description(descript, x_start, y_start):
 
         if x + word_width <= 1000:
             screen.blit(word_t, (x, y))
-            x += word_width + 2
+            x += word_width + space_between_words
         else:
             y += line_height
             x = x_start
             screen.blit(word_t, (x, y))
-            x += word_width + 2
+            x += word_width + space_between_words
+
 
 def check_guess(turns, word, user_guess, screen):
     """function for check the word that player guess and return win or not"""
