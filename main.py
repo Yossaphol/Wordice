@@ -25,7 +25,7 @@ def main_page():
     pygame.mixer.music.load("sounds/sound.mp3")
     pygame.mixer.music.play(-1)
 
-    pygame.display.set_caption("Bordice")
+    pygame.display.set_caption("Wordice")
 
     screen = pygame.display.set_mode((1280, 720))
     clock = pygame.time.Clock()
