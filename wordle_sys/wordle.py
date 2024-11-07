@@ -15,6 +15,7 @@ black = (0, 0, 0)
 green = (0, 255, 0)
 red = 255,0,0
 
+smallest = pygame.font.Font("fonts/Pixelify.ttf", 20)
 small = pygame.font.Font("fonts/Pixelify.ttf", 30)
 font = pygame.font.Font("fonts/Pixelify.ttf", 40)
 big_font = pygame.font.Font("fonts/Pixelify.ttf", 60)
@@ -125,6 +126,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
     print(word)
     add = 0
     winner = turn
+    bonus_turn = False
 
     while True:
 
@@ -160,6 +162,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                     if event.key == K_BACKSPACE:
                         guess = guess[:-1]
                     elif event.key == K_RETURN:
+
                         if len(guess) == len(word):
                             all_guesses.append(guess)
                             win, add = check_guess(turns, word, guess, screen)
@@ -170,14 +173,23 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                                 point_player1 += add
                                 final_point_a += add
                                 add = 0
-                                if not win:
+                                if not win and not bonus_turn:
                                     turn = "player2"
                             elif turn == "player2":
                                 point_player2 += add
                                 final_point_b += add
                                 add = 0
-                                if not win:
+                                if not win and not bonus_turn:
                                     turn = "player1"
+
+                        if turn == "player2" and point_player1 >= 20:
+                            point_player1 = 0
+                            bonus_turn = True
+                            turn = "player1"
+                        elif turn == "player1" and point_player2 >= 20:
+                            point_player2 = 0
+                            bonus_turn = True
+                            turn = "player2"
 
                     elif event.unicode.isalpha() and len(guess) < len(word):
                         guess += event.unicode.upper()
@@ -193,7 +205,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
         screen.blit(txt_upper, (700, 440))
         screen.blit(txt_middle, (700, 480))
         # screen.blit(txt_lower, (700, 520))
-        
+
         screen.blit(qeustion_mark, (730, 150))
 
         if turn == "player1":
@@ -236,7 +248,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
             win_text = big_font.render("Splendid!", True, green)
             meaning_text = font.render("MEANING :", True, dark_brown)
             screen.blit(meaning_text, (750, 200))
-            screen.blit(win_text, (720, 130))
+            screen.blit(win_text, (700, 130))
 
             show_description(description, 690, 270)
 
@@ -245,12 +257,48 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
             text_rect.center = ((840), (470))
             screen.blit(text_surface, text_rect)
 
-        # when not correct
-        elif turns == 6 and not win:
-            if winner == "player1":
-                winner = "player2"
+        # bonus move
+        elif bonus_turn and not win:
+
+            winner = turn
+
+            mouse = pygame.mouse.get_pos()
+            click = pygame.mouse.get_pressed()
+
+            sound = pygame.mixer.Sound("sounds/click.MP3")
+
+            pygame.draw.rect(screen, beige, (640, 120, 380, 480), 0, 0, 20, 20, 20, 20)
+            pygame.draw.rect(screen, powder_blue, (660, 250, 343, 180), 0, 0, 20, 20, 20, 20)
+            screen.blit(bonus, (700, 200))
+
+            if 940 > mouse[0] > 740 and 490 > mouse[1] > 450:
+                pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
+                pygame.draw.rect(screen, silver, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
+
+                if click[0] == 1:
+                    bonus_turn = False
+                    sound.play()
+                    total_turn += 1
+                    return True, False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
+
             else:
-                winner = "player1"
+                pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
+                pygame.draw.rect(screen, light_steel_blue, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
+
+            win_text = big_font.render("Bonus", True, red)
+            meaning_text = smallest.render("Use your free move wisely!", True, dark_brown)
+            screen.blit(win_text, (750, 130))
+            screen.blit(meaning_text, (710, 200))
+
+
+            smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
+            text_surface, text_rect = text_object("NEXT", smallText)
+            text_rect.center = ((840), (470))
+            screen.blit(text_surface, text_rect)
+
+        # when not correct
+        elif turns == 6 and not win and not bonus_turn:
+            
 
             mouse = pygame.mouse.get_pos()
             click = pygame.mouse.get_pressed()
@@ -276,7 +324,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
             win_text = big_font.render("Tough luck!", True, red)
             meaning_text = font.render("THE WORD IS :", True, dark_brown)
             answer = font.render(word, True, dark_golden_rod)
-            screen.blit(win_text, (700, 130))
+            screen.blit(win_text, (675, 130))
             screen.blit(meaning_text, (715, 200))
             screen.blit(answer, (780, 250))
 
@@ -288,46 +336,6 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
             screen.blit(text_surface, text_rect)
 
 
-        # bonus move
-        elif point_player1 >= 20 or point_player2 >= 20:
-
-            if turn == "player1":
-                point_player1 = 0
-            elif turn == "player2":
-                point_player2 = 0
-
-            mouse = pygame.mouse.get_pos()
-            click = pygame.mouse.get_pressed()
-
-            sound = pygame.mixer.Sound("sounds/click.MP3")
-
-            pygame.draw.rect(screen, beige, (640, 120, 380, 480), 0, 0, 20, 20, 20, 20)
-            pygame.draw.rect(screen, powder_blue, (660, 250, 343, 180), 0, 0, 20, 20, 20, 20)
-            screen.blit(bonus, (700, 200))
-
-            if 940 > mouse[0] > 740 and 490 > mouse[1] > 450:
-                pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
-                pygame.draw.rect(screen, silver, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
-
-                if click[0] == 1:
-                    sound.play()
-                    total_turn += 1
-                    return True, False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
-
-            else:
-                pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
-                pygame.draw.rect(screen, light_steel_blue, (740,450,200,40), 0, 0, 30 ,30, 30, 30)
-
-            win_text = big_font.render("Bonus", True, red)
-            meaning_text = small.render("Use your free move wisely!", True, dark_brown)
-            screen.blit(win_text, (750, 130))
-            screen.blit(meaning_text, (690, 200))
-
-
-            smallText = pygame.font.Font("fonts/Pixelify.ttf", 30)
-            text_surface, text_rect = text_object("NEXT", smallText)
-            text_rect.center = ((840), (470))
-            screen.blit(text_surface, text_rect)
 
         pygame.display.update()
         clock.tick(FPS)
