@@ -215,7 +215,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
 
         # out of turn remaining
         if total_turn >= 20:
-            return True, False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
+            return True, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
 
         # win and move
         elif win:
@@ -239,7 +239,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                         point_player1 = 0
                     else:
                         point_player2 = 0
-                    return True, False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
+                    return True, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
 
             else:
                 pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
@@ -279,7 +279,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                     bonus_turn = False
                     sound.play()
                     total_turn += 1
-                    return True, False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
+                    return True, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
 
             else:
                 pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)
@@ -315,7 +315,7 @@ def wordle(turn, total_turn, point_player1, point_player2, final_point_a, final_
                 if click[0] == 1:
                     sound.play()
                     total_turn += 1
-                    return False, True, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
+                    return False, winner, total_turn, point_player1, point_player2, final_point_a, final_point_b
 
             else:
                 pygame.draw.rect(screen, "BLACK", (743, 453, 200,40), 0, 0, 30 ,30, 30, 30)

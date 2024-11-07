@@ -123,7 +123,7 @@ def game_2_players():
     dice_num_image = dice_images[0]
     alert = False
     who_win = "player1"
-    lose = False
+    random_time = True
 
     while running:
 
@@ -192,7 +192,7 @@ def game_2_players():
         else:
             if not win:
                 turn = who_win
-                win, lose, who_win, total_turn, a_point, b_point, final_point_a, final_point_b = wordle(turn, total_turn, total_a, total_b, final_point_a, final_point_b)
+                win, who_win, total_turn, a_point, b_point, final_point_a, final_point_b = wordle(turn, total_turn, total_a, total_b, final_point_a, final_point_b)
                 total_a = a_point
                 total_b = b_point
             else:
@@ -212,19 +212,20 @@ def game_2_players():
 
 
                     sound = pygame.mixer.Sound("sounds/click.MP3")
-                    
+
                     your_text = font.render("Time to grow!", True, dark_brown)
-                    screen.blit(your_text, (420, 200))
+                    screen.blit(your_text, (520, 200))
 
                     # random button
                     if 600 > mouse[0] > 400 and 540 > mouse[1] > 500:
                         pygame.draw.rect(screen, "BLACK", (403, 503, 200,40), 0, 0, 30 ,30, 30, 30)
                         pygame.draw.rect(screen, silver, (400,500,200,40), 0, 0, 30 ,30, 30, 30)
 
-                        if click[0] == 1:
+                        if click[0] == 1 and random_time:
                             sound.play()
                             is_rolling = True
                             rolling_img_cnt = 0
+                            random_time = False
 
                     else:
                         pygame.draw.rect(screen, "BLACK", (403, 503, 200,40), 0, 0, 30 ,30, 30, 30)
@@ -252,10 +253,11 @@ def game_2_players():
                         pygame.draw.rect(screen, "BLACK", (683, 503, 200,40), 0, 0, 30 ,30, 30, 30)
                         pygame.draw.rect(screen, silver, (680,500,200,40), 0, 0, 30 ,30, 30, 30)
 
-                        if click[0] == 1:
+                        if click[0] == 1 and not random_time:
                             sound.play()
                             alert = False
                             win = False
+                            random_time = True
                             if turn == "player1":
                                 turn = "player2"
                                 if pos_1 + rand_num + 1 > len(p1_pos) - 1:
